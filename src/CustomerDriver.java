@@ -52,7 +52,12 @@ Customer cust1 = new Customer();
 	JRadioButton rdbtnpckageB = new JRadioButton("B           $3,250");
 	JCheckBox chckbxMetalicPaint = new JCheckBox("Metalic Paint $650");
 	
-	
+	JCheckBox chckbxTradeIn = new JCheckBox("Trade In");
+	JTextField valueTF = new JTextField();
+	JLabel lblValue = new JLabel("Value:");
+	JRadioButton rdbtnPayingInCash = new JRadioButton("Paying In Cash?");
+	JRadioButton rdbtnFinancing = new JRadioButton("Financing? (7%)");
+	double price = 0;
 
 	/**
 	 * Launch the application.
@@ -123,6 +128,8 @@ Customer cust1 = new Customer();
 				trackAdd++;
 				//create variable to track button clicks
 				
+				
+				
 				//set variables based on text input
 				String name = nameTF.getText();
 				String address = addressTF.getText();
@@ -133,8 +140,11 @@ Customer cust1 = new Customer();
 				cust1.setAddress(address);
 				cust1.setPhoneNumber(number);
 				
-				
-			
+				if(!nameTF.getText().equals("") && !addressTF.getText().equals("") && !phoneTF.getText().equals("")){
+				displayName.setText("Name: " + cust1.getName());
+				displayAddress.setText("Address: " + cust1.getAddress());
+				displayNumber.setText("Phone Number: " + cust1.getPhoneNumber());
+				}
 				//remove the text fields and the label
 				if (trackAdd == 1){
 				contentPane.remove(nameTF);
@@ -227,7 +237,7 @@ Customer cust1 = new Customer();
 				repaint();
 					
 					Volvo v1 = new Volvo();
-					double price;
+					
 					
 					if(rdbtnS40.isSelected() && trackAdd == 3){
 						price = v1.getS40();
@@ -239,13 +249,9 @@ Customer cust1 = new Customer();
 						contentPane.add(lblCPrice);
 						
 						addPackageA();
-						if (rdbtnpckageA.isSelected()){
-							price += 2200;
-						}
+					
 						metalic();
-						if (chckbxMetalicPaint.isSelected()){
-							price += 650;
-						}						
+										
 						repaint();
 						}
 					
@@ -261,13 +267,8 @@ Customer cust1 = new Customer();
 						setbndsForCPrice();
 						addPackageA();
 						
-						if (rdbtnpckageA.isSelected()){
-							price += 2200;
-						}
+						
 						metalic();
-						if (chckbxMetalicPaint.isSelected()){
-							price += 650;
-						}
 						
 						repaint();
 			        	}
@@ -283,16 +284,9 @@ Customer cust1 = new Customer();
 						addPackageA();
 						addPackageB();
 						
-						if (rdbtnpckageA.isSelected()){
-							price += 2200;
-						}
-						if (rdbtnpckageB.isSelected()){
-							price += 3250;
-						}
+					
 						metalic();
-						if (chckbxMetalicPaint.isSelected()){
-							price += 650;
-						}
+					
 						
 						repaint();
 				        }
@@ -310,23 +304,38 @@ Customer cust1 = new Customer();
 						addPackageB();
 						
 						
-						if (rdbtnpckageA.isSelected()){
-							price += 2200;
-						}
-						if (rdbtnpckageB.isSelected()){
-							price += 3250;
-						}
+					
 						metalic();
-						if (chckbxMetalicPaint.isSelected()){
-							price += 650;
-						}
-						
 						
 						repaint();
 				        }
 				
+					if (rdbtnpckageA.isSelected()){
+						price += 2200;
+					}
+					if (rdbtnpckageB.isSelected()){
+						price += 3250;
+					}
+					
+					if (chckbxMetalicPaint.isSelected()){
+						price += 650;
+					}
+					
 					if(trackAdd == 4){
 						removedp3();
+						addPayment();
+						
+						if(rdbtnPayingInCash.isSelected()){
+							price = price - 650; 
+							
+						}
+						if(rdbtnFinancing.isSelected()){
+							price = (price * .07) + price;
+						}
+						if(chckbxTradeIn.isSelected()){
+							double value = Double.parseDouble(valueTF.getText());
+							price = price - value;
+						}
 					}
 					//repaint!!!!!
 					repaint();
@@ -378,6 +387,31 @@ Customer cust1 = new Customer();
 				contentPane.remove(chckbxMetalicPaint);
 				contentPane.remove(lblCPrice);
 				
+			}
+			public void addPayment(){
+				lblCPrice.setText("       Price: $" + price);
+				contentPane.add(lblCPrice);
+				
+				
+				chckbxTradeIn.setBounds(59, 82, 128, 23);
+				contentPane.add(chckbxTradeIn);
+				
+			
+				valueTF.setBounds(295, 81, 130, 26);
+				contentPane.add(valueTF);
+				valueTF.setColumns(10);
+				
+				
+				lblValue.setBounds(247, 86, 47, 16);
+				contentPane.add(lblValue);
+				
+				rdbtnPayingInCash.setBounds(58, 117, 141, 23);
+				contentPane.add(rdbtnPayingInCash);
+				buttonGroup.add(rdbtnPayingInCash);
+				
+				rdbtnFinancing.setBounds(58, 152, 141, 23);
+				contentPane.add(rdbtnFinancing);
+				buttonGroup.add(rdbtnFinancing);
 			}
 			
 		});

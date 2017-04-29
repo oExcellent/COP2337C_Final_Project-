@@ -97,6 +97,9 @@ Customer cust1 = new Customer();
 	public CustomerDriver() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		String act = cust1.createAccount();
+		setTitle("*Volvo*         Customer Account Number :  "+act);
+
 		contentPane = new JPanel();
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -119,17 +122,18 @@ Customer cust1 = new Customer();
 		
 		nameTF = new JTextField();
 		nameTF.setToolTipText("");
-		nameTF.setBounds(145, 16, 130, 26);
+		//text box size increased
+		nameTF.setBounds(150, 16, 200, 26);
 		contentPane.add(nameTF);
 		nameTF.setColumns(10);
 		
 		addressTF = new JTextField();
-		addressTF.setBounds(145, 44, 130, 26);
+		addressTF.setBounds(150, 44, 200, 26);
 		contentPane.add(addressTF);
 		addressTF.setColumns(10);
 		
 		phoneTF = new JTextField();
-		phoneTF.setBounds(145, 72, 130, 26);
+		phoneTF.setBounds(150, 72, 200, 26);
 		contentPane.add(phoneTF);
 		phoneTF.setColumns(10);
 		
@@ -175,15 +179,16 @@ Customer cust1 = new Customer();
 				confirmLbL.setBounds(170, 18, 120, 36);
 				contentPane.add(confirmLbL);
 				
-				displayName.setBounds(180, 45, 150, 36);
+				//move to left side, display box width increased
+				displayName.setBounds(80, 45, 250, 36);
 				contentPane.add(displayName);
 				
 
-				displayAddress.setBounds(180, 66, 150, 36);
+				displayAddress.setBounds(80, 66, 250, 36);
 				contentPane.add(displayAddress);
 				
 
-				displayNumber.setBounds(180, 88, 180, 36);
+				displayNumber.setBounds(80, 88, 250, 36);
 				contentPane.add(displayNumber);
 				
 				ContinueBTN.setText("Confirm");
@@ -199,24 +204,24 @@ Customer cust1 = new Customer();
 					contentPane.remove(displayAddress);
 					contentPane.remove(displayNumber);
 				
-					
+					//distance between model, price modified
 					buttonGroup.add(rdbtnS40);
-					rdbtnS40.setBounds(6, 90, 141, 23);
+					rdbtnS40.setBounds(70, 90, 90, 23);
 					contentPane.add(rdbtnS40);
 					
 
 					buttonGroup.add(rdbtnS60);
-					rdbtnS60.setBounds(6, 117, 141, 23);
+					rdbtnS60.setBounds(70, 117, 90, 23);
 					contentPane.add(rdbtnS60);
 					
 
 					buttonGroup.add(rdbtnS70);
-					rdbtnS70.setBounds(6, 145, 141, 23);
+					rdbtnS70.setBounds(70, 145, 90, 23);
 					contentPane.add(rdbtnS70);
 					
 
 					buttonGroup.add(rdbtnS80);
-					rdbtnS80.setBounds(6, 170, 141, 23);
+					rdbtnS80.setBounds(70, 170, 90, 23);
 					contentPane.add(rdbtnS80);
 					
 					
@@ -240,7 +245,7 @@ Customer cust1 = new Customer();
 					contentPane.add(lblPrice);
 					
 				
-					lblModel.setBounds(6, 66, 61, 16);
+					lblModel.setBounds(70, 66, 61, 16);
 					contentPane.add(lblModel);
 					
 				
@@ -459,28 +464,30 @@ Customer cust1 = new Customer();
 				lblCPrice.setText("       Price: $" + price);
 				
 				
-				lblName.setBounds(26, 66, 121, 16);
+				lblName.setBounds(18, 66, 121, 16);
 				contentPane.add(lblName);
 				lblName.setText("Name: " + cust1.getName());
 				
-				lblAddress.setBounds(183, 66, 140, 16);
+				lblAddress.setBounds(131, 66, 200, 16);
 				contentPane.add(lblAddress);
 				lblAddress.setText("Address: " + cust1.getAddress());
 				
-				lblNewLabel.setBounds(335, 66, 109, 16);
+				lblNewLabel.setBounds(300, 66, 200, 16);
 				contentPane.add(lblNewLabel);
 				lblNewLabel.setText("Phone#: " +cust1.getPhoneNumber());
 				
+				//account number added
+
 				lblAccountNumber.setBounds(183, 6, 174, 16);
 				contentPane.add(lblAccountNumber);
-				lblAccountNumber.setText("Acct #: ");
+				lblAccountNumber.setText("Acct # :  " + act);
 				
 				lblModel_1.setBounds(18, 94, 78, 16);
 				contentPane.add(lblModel_1);
 				lblModel_1.setText("Model: " + model);
 				
 				
-				lblBase.setBounds(131, 94, 79, 16);
+				lblBase.setBounds(131, 94, 100, 16);
 				contentPane.add(lblBase);
 				lblBase.setText("Base: $"+basePrice);
 				
@@ -498,7 +505,7 @@ Customer cust1 = new Customer();
 				contentPane.add(lblt);
 				
 			
-				lblTT.setBounds(255, 134, 92, 16);
+				lblTT.setBounds(183, 134, 92, 16);
 				contentPane.add(lblTT);
 				
 				
@@ -512,7 +519,7 @@ Customer cust1 = new Customer();
 				lblTotalCost.setText(""+price);
 				
 				
-				lblNewLabel_1.setBounds(346, 134, 61, 16);
+				lblNewLabel_1.setBounds(275, 134, 61, 16);
 				contentPane.add(lblNewLabel_1);
 				lblNewLabel_1.setText("325");
 			}

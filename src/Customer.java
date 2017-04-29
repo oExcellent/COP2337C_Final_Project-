@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Customer {
 	String name;
@@ -9,13 +10,13 @@ public class Customer {
 			name = "Max";
 			address = "123 up wy";
 			phoneNumber = "9541112222";
-			accountNumber= "MW-2121";
+			accountNumber= "2121";
 		}
-		Customer(String n, String a, String p, String aN){
+		Customer(String n, String a, String p){
 			this.name = n;
 			this.address = a;
 			this.phoneNumber = p;
-			this.accountNumber= aN;
+			this.accountNumber= createAccount();
 		}
 		
 		
@@ -32,7 +33,14 @@ public class Customer {
 		public void setAccountNumber(String a){
 			this.accountNumber = a;
 		}
-		
+		//account number generate
+		String createAccount(){
+			Random randomNum = new Random();
+			int randomInt = randomNum.nextInt(9999);
+			String rNum = String.format("%04d", randomInt);
+
+			return rNum;
+		}	
 		//Getters
 		public String getName(){
 			return this.name;
@@ -44,7 +52,7 @@ public class Customer {
 			return this.phoneNumber;
 		}
 		public String getAccountNumber(){
-			return this.accountNumber;
+			return this.accountNumber = createAccount();
 		}
 		
 

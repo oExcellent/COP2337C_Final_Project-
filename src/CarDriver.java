@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
 import java.awt.Font;
+import javax.swing.JCheckBox;
 
 public class CarDriver extends JFrame {
 
@@ -52,14 +53,14 @@ public class CarDriver extends JFrame {
 		rdbtnS60.setBounds(6, 117, 141, 23);
 		contentPane.add(rdbtnS60);
 		
-		JRadioButton rdbtnS70 = new JRadioButton("S70");
+		JRadioButton rdbtnS70 = new JRadioButton("A           $2200");
 		buttonGroup.add(rdbtnS70);
-		rdbtnS70.setBounds(6, 145, 141, 23);
+		rdbtnS70.setBounds(110, 94, 141, 23);
 		contentPane.add(rdbtnS70);
 		
 		JRadioButton rdbtnS80 = new JRadioButton("S80");
 		buttonGroup.add(rdbtnS80);
-		rdbtnS80.setBounds(6, 170, 141, 23);
+		rdbtnS80.setBounds(110, 129, 141, 23);
 		contentPane.add(rdbtnS80);
 		
 		JLabel lblPrice1 = new JLabel("$27,700");
@@ -90,5 +91,9 @@ public class CarDriver extends JFrame {
 		lblVolvo.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
 		lblVolvo.setBounds(69, 20, 278, 34);
 		contentPane.add(lblVolvo);
+		
+		JCheckBox chckbxMetalicPaint = new JCheckBox("Metalic Paint");
+		chckbxMetalicPaint.setBounds(163, 177, 128, 23);
+		contentPane.add(chckbxMetalicPaint);
 	}
 }

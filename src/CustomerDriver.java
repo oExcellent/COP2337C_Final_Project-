@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -26,15 +28,31 @@ Customer cust1 = new Customer();
 	private JTextField phoneTF;
 	
 	JLabel confirmLbL = new JLabel("Confirm");
-	JLabel displayName = new JLabel(cust1.getName());
-	JLabel displayAddress = new JLabel(cust1.getAddress());
-	JLabel displayNumber = new JLabel(cust1.getPhoneNumber());
+	JLabel displayName = new JLabel("Name: " + cust1.getName());
+	JLabel displayAddress = new JLabel("Address: " + cust1.getAddress());
+	JLabel displayNumber = new JLabel("Phone Number: " + cust1.getPhoneNumber());
 	
 	
 	JRadioButton rdbtnS40 = new JRadioButton("S40");
 	JRadioButton rdbtnS60 = new JRadioButton("S60");
 	JRadioButton rdbtnS70 = new JRadioButton("S70");
 	JRadioButton rdbtnS80 = new JRadioButton("S80");
+
+	JLabel lblPrice1 = new JLabel("$27,700");
+	JLabel lblPrice2 = new JLabel("$32,500");
+	JLabel lblPrice3 = new JLabel("$36,000");
+	JLabel lblPrice4 = new JLabel("$44,000");
+	JLabel lblPrice = new JLabel("Price");
+	JLabel lblModel = new JLabel("Model");
+	JLabel lblVolvo = new JLabel("       Select Model");
+	
+	JLabel lblCPrice = new JLabel("No balance");
+
+	JRadioButton rdbtnpckageA = new JRadioButton("A           $2,200");
+	JRadioButton rdbtnpckageB = new JRadioButton("B           $3,250");
+	JCheckBox chckbxMetalicPaint = new JCheckBox("Metalic Paint $650");
+	
+	
 
 	/**
 	 * Launch the application.
@@ -52,6 +70,7 @@ Customer cust1 = new Customer();
 		});
 	}
 
+	
 	/**
 	 * Create the frame.
 	 */
@@ -59,9 +78,12 @@ Customer cust1 = new Customer();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+	
 		
 		JLabel lblFullName = new JLabel("Full Name:");
 		lblFullName.setBounds(6, 21, 91, 16);
@@ -92,6 +114,8 @@ Customer cust1 = new Customer();
 		phoneTF.setColumns(10);
 		
 		trackAdd = 0;
+		
+		
 		//create button event
 		JButton ContinueBTN = new JButton("Continue");
 		ContinueBTN.addActionListener(new ActionListener() {
@@ -121,19 +145,19 @@ Customer cust1 = new Customer();
 				contentPane.remove(lblAddress);
 				contentPane.remove(lblPhoneNumber);
 				
-				
-				confirmLbL.setBounds(180, 21, 120, 36);
+				confirmLbL.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
+				confirmLbL.setBounds(170, 18, 120, 36);
 				contentPane.add(confirmLbL);
 				
-				displayName.setBounds(180, 45, 120, 36);
+				displayName.setBounds(180, 45, 150, 36);
 				contentPane.add(displayName);
 				
 
-				displayAddress.setBounds(180, 66, 120, 36);
+				displayAddress.setBounds(180, 66, 150, 36);
 				contentPane.add(displayAddress);
 				
 
-				displayNumber.setBounds(180, 88, 120, 36);
+				displayNumber.setBounds(180, 88, 180, 36);
 				contentPane.add(displayNumber);
 				
 				ContinueBTN.setText("Confirm");
@@ -170,39 +194,37 @@ Customer cust1 = new Customer();
 					contentPane.add(rdbtnS80);
 					
 					
-					JLabel lblPrice1 = new JLabel("$27,700");
+					
 					lblPrice1.setBounds(330, 94, 61, 16);
 					contentPane.add(lblPrice1);
-					
-					JLabel lblPrice2 = new JLabel("$32,500");
+				
 					lblPrice2.setBounds(330, 121, 61, 16);
 					contentPane.add(lblPrice2);
 					
-					JLabel lblPrice3 = new JLabel("$36,000");
+					
 					lblPrice3.setBounds(330, 149, 61, 16);
 					contentPane.add(lblPrice3);
 					
-					JLabel lblPrice4 = new JLabel("$44,000");
+					
 					lblPrice4.setBounds(330, 177, 61, 16);
 					contentPane.add(lblPrice4);
 					
-					JLabel lblPrice = new JLabel("Price");
+					
 					lblPrice.setBounds(330, 66, 61, 16);
 					contentPane.add(lblPrice);
 					
-					JLabel lblModel = new JLabel("Model");
+				
 					lblModel.setBounds(6, 66, 61, 16);
 					contentPane.add(lblModel);
 					
-					JLabel lblVolvo = new JLabel("       Select Model");
+				
 					lblVolvo.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
 					lblVolvo.setBounds(69, 20, 278, 34);
 					contentPane.add(lblVolvo);
 				}
 				
 					//repaint!!!!!
-					contentPane.revalidate();
-					contentPane.repaint();
+				repaint();
 					
 					Volvo v1 = new Volvo();
 					double price;
@@ -210,71 +232,154 @@ Customer cust1 = new Customer();
 					if(rdbtnS40.isSelected() && trackAdd == 3){
 						price = v1.getS40();
 						
-						contentPane.remove(rdbtnS40);
-						contentPane.remove(rdbtnS60);
-						contentPane.remove(rdbtnS70);
-						contentPane.remove(rdbtnS80);
+			        	removeContentPane1();
 						
-						JLabel lblCPrice = new JLabel("       Price: $" + price);
-						lblCPrice.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
-						lblCPrice.setBounds(69, 55, 278, 34);
+						lblCPrice.setText("       Price: $" + price);
+						setbndsForCPrice();
 						contentPane.add(lblCPrice);
 						
-					
-						
+						addPackageA();
+						if (rdbtnpckageA.isSelected()){
+							price += 2200;
+						}
+						metalic();
+						if (chckbxMetalicPaint.isSelected()){
+							price += 650;
+						}						
+						repaint();
 						}
 					
 					
 			        else if(rdbtnS60.isSelected() && trackAdd == 3){
 			        	price = v1.getS60();
 						
-						contentPane.remove(rdbtnS40);
-						contentPane.remove(rdbtnS60);
-						contentPane.remove(rdbtnS70);
-						contentPane.remove(rdbtnS80);
-						
-						JLabel lblCPrice = new JLabel("       Price: $" + price);
-						lblCPrice.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
-						lblCPrice.setBounds(69, 20, 278, 34);
+			        	removeContentPane1();
+
+						lblCPrice.setText("       Price: $" + price);
+
 						contentPane.add(lblCPrice);
+						setbndsForCPrice();
+						addPackageA();
 						
+						if (rdbtnpckageA.isSelected()){
+							price += 2200;
+						}
+						metalic();
+						if (chckbxMetalicPaint.isSelected()){
+							price += 650;
+						}
 						
+						repaint();
 			        	}
 			        else if(rdbtnS70.isSelected() && trackAdd == 3){
 			        	price = v1.getS70();
 						
-						contentPane.remove(rdbtnS40);
-						contentPane.remove(rdbtnS60);
-						contentPane.remove(rdbtnS70);
-						contentPane.remove(rdbtnS80);
-						
-						JLabel lblCPrice = new JLabel("       Price: $" + price);
-						lblCPrice.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
-						lblCPrice.setBounds(69, 20, 278, 34);
-						contentPane.add(lblCPrice);
-						
+			        	removeContentPane1();
+					
+						lblCPrice.setText("       Price: $" + price);
+						setbndsForCPrice();
 				
+					
+						addPackageA();
+						addPackageB();
+						
+						if (rdbtnpckageA.isSelected()){
+							price += 2200;
+						}
+						if (rdbtnpckageB.isSelected()){
+							price += 3250;
+						}
+						metalic();
+						if (chckbxMetalicPaint.isSelected()){
+							price += 650;
+						}
+						
+						repaint();
 				        }
-			        else if(rdbtnS70.isSelected() && trackAdd == 3){
+			        else if(rdbtnS80.isSelected() && trackAdd == 3){
 			        	price = v1.getS80();
 						
-						contentPane.remove(rdbtnS40);
-						contentPane.remove(rdbtnS60);
-						contentPane.remove(rdbtnS70);
-						contentPane.remove(rdbtnS80);
+			        	removeContentPane1();
 						
-						JLabel lblCPrice = new JLabel("       Price: $" + price);
-						lblCPrice.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
-						lblCPrice.setBounds(69, 20, 278, 34);
+						
+						lblCPrice.setText("       Price: $" + price);
+						setbndsForCPrice();
+						
 						contentPane.add(lblCPrice);
+						addPackageA();
+						addPackageB();
 						
-					
+						
+						if (rdbtnpckageA.isSelected()){
+							price += 2200;
+						}
+						if (rdbtnpckageB.isSelected()){
+							price += 3250;
+						}
+						metalic();
+						if (chckbxMetalicPaint.isSelected()){
+							price += 650;
+						}
+						
+						
+						repaint();
 				        }
 				
+					if(trackAdd == 4){
+						removedp3();
+					}
 					//repaint!!!!!
-					contentPane.revalidate();
-					contentPane.repaint();
+					repaint();
 			}
+			
+			
+			//repaint function!!!!!
+			public void repaint(){
+			contentPane.revalidate();
+			contentPane.repaint();
+			}
+			
+			public void setbndsForCPrice(){
+				lblCPrice.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
+				lblCPrice.setBounds(69, 20, 290, 34);
+			}
+			public void addPackageA(){
+				buttonGroup.add(rdbtnpckageA);
+				rdbtnpckageA.setBounds(110, 94, 141, 23);
+				contentPane.add(rdbtnpckageA);
+			}
+			public void addPackageB(){
+				buttonGroup.add(rdbtnpckageB);
+				rdbtnpckageB.setBounds(110, 134, 141, 23);
+				contentPane.add(rdbtnpckageB);
+			}
+			public void removeContentPane1(){
+				contentPane.remove(rdbtnS40);
+				contentPane.remove(rdbtnS60);
+				contentPane.remove(rdbtnS70);
+				contentPane.remove(rdbtnS80);
+				contentPane.remove(lblPrice1);
+				contentPane.remove(lblPrice2);
+				contentPane.remove(lblPrice3);
+				contentPane.remove(lblPrice4);
+				contentPane.remove(lblPrice);
+				contentPane.remove(lblModel);
+				contentPane.remove(lblVolvo);
+				
+			
+			}
+			public void metalic(){
+				chckbxMetalicPaint.setBounds(163, 160, 158, 23);
+				contentPane.add(chckbxMetalicPaint);
+			}
+			public void removedp3(){
+				contentPane.remove(rdbtnpckageA);
+				contentPane.remove(rdbtnpckageB);
+				contentPane.remove(chckbxMetalicPaint);
+				contentPane.remove(lblCPrice);
+				
+			}
+			
 		});
 		ContinueBTN.setBounds(158, 186, 117, 29);
 		contentPane.add(ContinueBTN);

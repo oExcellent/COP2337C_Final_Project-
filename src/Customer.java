@@ -18,6 +18,7 @@ public class Customer {
 			this.accountNumber= aN;
 		}
 		
+		
 		//Setters
 		public void setName(String n){
 			this.name = n;

@@ -57,8 +57,23 @@ Customer cust1 = new Customer();
 	JLabel lblValue = new JLabel("Value:");
 	JRadioButton rdbtnPayingInCash = new JRadioButton("Paying In Cash?");
 	JRadioButton rdbtnFinancing = new JRadioButton("Financing? (7%)");
-	double price = 0;
-
+	
+	JLabel lblNewLabel_1 = new JLabel("TilteCost");
+	JLabel lblTotalCost = new JLabel("total");
+	JLabel lblTax = new JLabel("Tax");
+	JLabel lblTT = new JLabel("Tag & title : $");
+	JLabel lblt = new JLabel("Tax:            $");
+	JLabel lblTot = new JLabel("Total Cost: $");
+	JLabel lblPackage = new JLabel("Package");
+	JLabel lblBase = new JLabel("Base $");
+	JLabel lblModel_1 = new JLabel("Model");
+	JLabel lblAccountNumber = new JLabel("Account Number");
+	JLabel lblNewLabel = new JLabel("PhoneNumber");
+	JLabel lblAddress = new JLabel("Address");
+	JLabel lblName = new JLabel("Name");
+	double price = 0, basePrice = 0;
+	String model =" ", pcKage = "";
+	double tax =0;
 	/**
 	 * Launch the application.
 	 */
@@ -119,6 +134,7 @@ Customer cust1 = new Customer();
 		phoneTF.setColumns(10);
 		
 		trackAdd = 0;
+		
 		
 		
 		//create button event
@@ -241,7 +257,8 @@ Customer cust1 = new Customer();
 					
 					if(rdbtnS40.isSelected() && trackAdd == 3){
 						price = v1.getS40();
-						
+						basePrice = price;
+						model ="S40";
 			        	removeContentPane1();
 						
 						lblCPrice.setText("       Price: $" + price);
@@ -258,7 +275,9 @@ Customer cust1 = new Customer();
 					
 			        else if(rdbtnS60.isSelected() && trackAdd == 3){
 			        	price = v1.getS60();
-						
+			        	basePrice = price;
+						model ="S60";
+
 			        	removeContentPane1();
 
 						lblCPrice.setText("       Price: $" + price);
@@ -274,13 +293,16 @@ Customer cust1 = new Customer();
 			        	}
 			        else if(rdbtnS70.isSelected() && trackAdd == 3){
 			        	price = v1.getS70();
-						
+			        	basePrice = price;
+						model ="S70";
+
 			        	removeContentPane1();
 					
 						lblCPrice.setText("       Price: $" + price);
 						setbndsForCPrice();
 				
-					
+						contentPane.add(lblCPrice);
+
 						addPackageA();
 						addPackageB();
 						
@@ -292,7 +314,9 @@ Customer cust1 = new Customer();
 				        }
 			        else if(rdbtnS80.isSelected() && trackAdd == 3){
 			        	price = v1.getS80();
-						
+			        	basePrice = price;
+						model ="S80";
+
 			        	removeContentPane1();
 						
 						
@@ -312,31 +336,42 @@ Customer cust1 = new Customer();
 				
 					if (rdbtnpckageA.isSelected()){
 						price += 2200;
+						pcKage = "Package: A";
 					}
 					if (rdbtnpckageB.isSelected()){
 						price += 3250;
+						pcKage = "Package: B";
 					}
 					
 					if (chckbxMetalicPaint.isSelected()){
 						price += 650;
 					}
-					
+					//fourth click
 					if(trackAdd == 4){
 						removedp3();
 						addPayment();
-						
-						if(rdbtnPayingInCash.isSelected()){
-							price = price - 650; 
-							
-						}
-						if(rdbtnFinancing.isSelected()){
-							price = (price * .07) + price;
-						}
-						if(chckbxTradeIn.isSelected()){
-							double value = Double.parseDouble(valueTF.getText());
-							price = price - value;
-						}
 					}
+					
+					if(rdbtnPayingInCash.isSelected()){
+						price = price - 650; 
+						
+					}
+					if(rdbtnFinancing.isSelected()){
+						price = (price * .07) + price;
+					}
+					
+					if(chckbxTradeIn.isSelected()){
+						double value = Double.parseDouble(valueTF.getText());
+						price = price - value;
+					}
+					
+					
+					if(trackAdd ==5){
+						removePayment();
+						populateConfirm();
+						
+					}
+					tax = (price * 0.06);
 					//repaint!!!!!
 					repaint();
 			}
@@ -413,9 +448,77 @@ Customer cust1 = new Customer();
 				contentPane.add(rdbtnFinancing);
 				buttonGroup.add(rdbtnFinancing);
 			}
+			public void removePayment(){
+				contentPane.remove(chckbxTradeIn);
+				contentPane.remove(valueTF);
+				contentPane.remove(lblValue);
+				contentPane.remove(rdbtnPayingInCash);
+				contentPane.remove(rdbtnFinancing);
+			}
+			public void populateConfirm(){
+				lblCPrice.setText("       Price: $" + price);
+				
+				
+				lblName.setBounds(26, 66, 121, 16);
+				contentPane.add(lblName);
+				lblName.setText("Name: " + cust1.getName());
+				
+				lblAddress.setBounds(183, 66, 140, 16);
+				contentPane.add(lblAddress);
+				lblAddress.setText("Address: " + cust1.getAddress());
+				
+				lblNewLabel.setBounds(335, 66, 109, 16);
+				contentPane.add(lblNewLabel);
+				lblNewLabel.setText("Phone#: " +cust1.getPhoneNumber());
+				
+				lblAccountNumber.setBounds(183, 6, 174, 16);
+				contentPane.add(lblAccountNumber);
+				lblAccountNumber.setText("Acct #: ");
+				
+				lblModel_1.setBounds(18, 94, 78, 16);
+				contentPane.add(lblModel_1);
+				lblModel_1.setText("Model: " + model);
+				
+				
+				lblBase.setBounds(131, 94, 79, 16);
+				contentPane.add(lblBase);
+				lblBase.setText("Base: $"+basePrice);
+				
+				
+				lblPackage.setBounds(255, 94, 78, 16);
+				contentPane.add(lblPackage);
+				lblPackage.setText(pcKage);
+				
+				
+				lblTot.setBounds(183, 193, 81, 16);
+				contentPane.add(lblTot);
+				
+				
+				lblt.setBounds(183, 173, 92, 16);
+				contentPane.add(lblt);
+				
+			
+				lblTT.setBounds(255, 134, 92, 16);
+				contentPane.add(lblTT);
+				
+				
+				lblTax.setBounds(275, 173, 61, 16);
+				contentPane.add(lblTax);
+				lblTax.setText("" + tax);
+				
+				
+				lblTotalCost.setBounds(275, 193, 61, 16);
+				contentPane.add(lblTotalCost);
+				lblTotalCost.setText(""+price);
+				
+				
+				lblNewLabel_1.setBounds(346, 134, 61, 16);
+				contentPane.add(lblNewLabel_1);
+				lblNewLabel_1.setText("325");
+			}
 			
 		});
-		ContinueBTN.setBounds(158, 186, 117, 29);
+		ContinueBTN.setBounds(158, 220, 117, 29);
 		contentPane.add(ContinueBTN);
 	}
 }

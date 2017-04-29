@@ -18,11 +18,23 @@ public class CustomerDriver extends JFrame {
 public static Integer trackAdd =0;
 private final ButtonGroup buttonGroup = new ButtonGroup();
 
+Customer cust1 = new Customer();
 
 	private JPanel contentPane;
 	private JTextField nameTF;
 	private JTextField addressTF;
 	private JTextField phoneTF;
+	
+	JLabel confirmLbL = new JLabel("Confirm");
+	JLabel displayName = new JLabel(cust1.getName());
+	JLabel displayAddress = new JLabel(cust1.getAddress());
+	JLabel displayNumber = new JLabel(cust1.getPhoneNumber());
+	
+	
+	JRadioButton rdbtnS40 = new JRadioButton("S40");
+	JRadioButton rdbtnS60 = new JRadioButton("S60");
+	JRadioButton rdbtnS70 = new JRadioButton("S70");
+	JRadioButton rdbtnS80 = new JRadioButton("S80");
 
 	/**
 	 * Launch the application.
@@ -93,16 +105,12 @@ private final ButtonGroup buttonGroup = new ButtonGroup();
 				String number = phoneTF.getText();
 				
 				//create customer instance
-				Customer cust1 = new Customer();
 				cust1.setName(name);
 				cust1.setAddress(address);
 				cust1.setPhoneNumber(number);
 				
 				
-				JLabel confirmLbL = new JLabel("Confirm");
-				JLabel displayName = new JLabel(cust1.getName());
-				JLabel displayAddress = new JLabel(cust1.getAddress());
-				JLabel displayNumber = new JLabel(cust1.getPhoneNumber());
+			
 				//remove the text fields and the label
 				if (trackAdd == 1){
 				contentPane.remove(nameTF);
@@ -129,26 +137,18 @@ private final ButtonGroup buttonGroup = new ButtonGroup();
 				contentPane.add(displayNumber);
 				
 				ContinueBTN.setText("Confirm");
-				//repaint!!!!!
 				
-				contentPane.revalidate();
-				contentPane.repaint();
+				
 				}
 				
-				JRadioButton rdbtnS40 = new JRadioButton("S40");
-				JRadioButton rdbtnS60 = new JRadioButton("S60");
-				JRadioButton rdbtnS70 = new JRadioButton("S70");
-				JRadioButton rdbtnS80 = new JRadioButton("S80");
+			
 				
 				if (trackAdd == 2){
 					contentPane.remove(confirmLbL);
 					contentPane.remove(displayName);
 					contentPane.remove(displayAddress);
 					contentPane.remove(displayNumber);
-					//repaint!!!!!
-					contentPane.revalidate();
-					contentPane.repaint();
-					
+				
 					
 					buttonGroup.add(rdbtnS40);
 					rdbtnS40.setBounds(6, 90, 141, 23);
@@ -198,6 +198,7 @@ private final ButtonGroup buttonGroup = new ButtonGroup();
 					lblVolvo.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
 					lblVolvo.setBounds(69, 20, 278, 34);
 					contentPane.add(lblVolvo);
+				}
 				
 					//repaint!!!!!
 					contentPane.revalidate();
@@ -216,15 +217,15 @@ private final ButtonGroup buttonGroup = new ButtonGroup();
 						
 						JLabel lblCPrice = new JLabel("       Price: $" + price);
 						lblCPrice.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
-						lblCPrice.setBounds(69, 20, 278, 34);
+						lblCPrice.setBounds(69, 55, 278, 34);
 						contentPane.add(lblCPrice);
 						
-						//repaint!!!!!
-						contentPane.revalidate();
-						contentPane.repaint();
+					
 						
 						}
-			        else if(rdbtnS60.isSelected() && trackAdd == 4){
+					
+					
+			        else if(rdbtnS60.isSelected() && trackAdd == 3){
 			        	price = v1.getS60();
 						
 						contentPane.remove(rdbtnS40);
@@ -237,9 +238,7 @@ private final ButtonGroup buttonGroup = new ButtonGroup();
 						lblCPrice.setBounds(69, 20, 278, 34);
 						contentPane.add(lblCPrice);
 						
-						//repaint!!!!!
-						contentPane.revalidate();
-						contentPane.repaint();
+						
 			        	}
 			        else if(rdbtnS70.isSelected() && trackAdd == 3){
 			        	price = v1.getS70();
@@ -254,9 +253,7 @@ private final ButtonGroup buttonGroup = new ButtonGroup();
 						lblCPrice.setBounds(69, 20, 278, 34);
 						contentPane.add(lblCPrice);
 						
-						//repaint!!!!!
-						contentPane.revalidate();
-						contentPane.repaint();
+				
 				        }
 			        else if(rdbtnS70.isSelected() && trackAdd == 3){
 			        	price = v1.getS80();
@@ -271,12 +268,12 @@ private final ButtonGroup buttonGroup = new ButtonGroup();
 						lblCPrice.setBounds(69, 20, 278, 34);
 						contentPane.add(lblCPrice);
 						
-						//repaint!!!!!
-						contentPane.revalidate();
-						contentPane.repaint();
+					
 				        }
-				}
 				
+					//repaint!!!!!
+					contentPane.revalidate();
+					contentPane.repaint();
 			}
 		});
 		ContinueBTN.setBounds(158, 186, 117, 29);

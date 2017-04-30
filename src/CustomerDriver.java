@@ -379,9 +379,12 @@ Customer cust1 = new Customer();
 						removePayment();
 						populateConfirm();
 						ContinueBTN.setText("Accept");
+						
 					}
 					if(trackAdd ==6){
-						JOptionPane.showMessageDialog(null, "Congratulations " + name + ", on your new Volvo " + model);
+						JOptionPane.showMessageDialog(null, "Congratulations " + cust1.getName() + ", on your new Volvo " + model);
+						contentPane.remove(ContinueBTN);
+					
 					}
 					tax = (price * 0.06);
 					//repaint!!!!!

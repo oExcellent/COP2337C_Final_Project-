@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -155,12 +156,14 @@ Customer cust1 = new Customer();
 				String address = addressTF.getText();
 				String number = phoneTF.getText();
 				
+				
+				if(!nameTF.getText().equals("") && !addressTF.getText().equals("") && !phoneTF.getText().equals("")){
 				//create customer instance
 				cust1.setName(name);
 				cust1.setAddress(address);
 				cust1.setPhoneNumber(number);
 				
-				if(!nameTF.getText().equals("") && !addressTF.getText().equals("") && !phoneTF.getText().equals("")){
+				
 				displayName.setText("Name: " + cust1.getName());
 				displayAddress.setText("Address: " + cust1.getAddress());
 				displayNumber.setText("Phone Number: " + cust1.getPhoneNumber());
@@ -252,6 +255,7 @@ Customer cust1 = new Customer();
 					lblVolvo.setFont(new Font("Lucida Grande", Font.PLAIN, 28));
 					lblVolvo.setBounds(69, 20, 278, 34);
 					contentPane.add(lblVolvo);
+					ContinueBTN.setText("Continue");
 				}
 				
 					//repaint!!!!!
@@ -374,7 +378,10 @@ Customer cust1 = new Customer();
 					if(trackAdd ==5){
 						removePayment();
 						populateConfirm();
-						
+						ContinueBTN.setText("Accept");
+					}
+					if(trackAdd ==6){
+						JOptionPane.showMessageDialog(null, "Congratulations " + name + ", on your new Volvo " + model);
 					}
 					tax = (price * 0.06);
 					//repaint!!!!!
@@ -413,9 +420,7 @@ Customer cust1 = new Customer();
 				contentPane.remove(lblPrice4);
 				contentPane.remove(lblPrice);
 				contentPane.remove(lblModel);
-				contentPane.remove(lblVolvo);
-				
-			
+				contentPane.remove(lblVolvo);	
 			}
 			public void metalic(){
 				chckbxMetalicPaint.setBounds(163, 160, 158, 23);
@@ -431,12 +436,10 @@ Customer cust1 = new Customer();
 			public void addPayment(){
 				lblCPrice.setText("       Price: $" + price);
 				contentPane.add(lblCPrice);
-				
-				
+							
 				chckbxTradeIn.setBounds(59, 82, 128, 23);
 				contentPane.add(chckbxTradeIn);
 				
-			
 				valueTF.setBounds(295, 81, 130, 26);
 				contentPane.add(valueTF);
 				valueTF.setColumns(10);

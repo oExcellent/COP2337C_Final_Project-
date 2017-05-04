@@ -63,6 +63,7 @@ Customer cust1 = new Customer();
 	JLabel lblTotalCost = new JLabel("total");
 	JLabel lblTax = new JLabel("Tax");
 	JLabel lblTT = new JLabel("Tag & title : $");
+	JLabel lblMp = new JLabel("Paint: $");
 	JLabel lblt = new JLabel("Tax:            $");
 	JLabel lblTot = new JLabel("Total Cost: $");
 	JLabel lblPackage = new JLabel("Package");
@@ -73,7 +74,7 @@ Customer cust1 = new Customer();
 	JLabel lblAddress = new JLabel("Address");
 	JLabel lblName = new JLabel("Name");
 	double price = 0, basePrice = 0;
-	String model =" ", pcKage = "";
+	String model =" ", pcKage = "", pcMpaint = "" ;
 	double tax =0;
 	/**
 	 * Launch the application.
@@ -150,7 +151,7 @@ Customer cust1 = new Customer();
 				//create variable to track button clicks
 				
 				
-				
+				//trackAdd#0 window 1
 				//set variables based on text input
 				String name = nameTF.getText();
 				String address = addressTF.getText();
@@ -182,6 +183,7 @@ Customer cust1 = new Customer();
 				confirmLbL.setBounds(170, 18, 120, 36);
 				contentPane.add(confirmLbL);
 				
+				//trackAdd#1 window2 Confirm
 				//move to left side, display box width increased
 				displayName.setBounds(80, 45, 250, 36);
 				contentPane.add(displayName);
@@ -198,9 +200,7 @@ Customer cust1 = new Customer();
 				
 				
 				}
-				
-			
-				
+				//trackAdd#2 window3 (model/price)
 				if (trackAdd == 2){
 					contentPane.remove(confirmLbL);
 					contentPane.remove(displayName);
@@ -258,11 +258,10 @@ Customer cust1 = new Customer();
 					ContinueBTN.setText("Continue");
 				}
 				
-					//repaint!!!!!
+				//repaint!!!!!
 				repaint();
 					
 					Volvo v1 = new Volvo();
-					
 					
 					if(rdbtnS40.isSelected() && trackAdd == 3){
 						price = v1.getS40();
@@ -345,15 +344,17 @@ Customer cust1 = new Customer();
 				
 					if (rdbtnpckageA.isSelected()){
 						price += 2200;
-						pcKage = "Package: A";
+						pcKage = "Package: A   $2200";
 					}
 					if (rdbtnpckageB.isSelected()){
 						price += 3250;
-						pcKage = "Package: B";
+						pcKage = "Package: B   $3250";
 					}
 					
 					if (chckbxMetalicPaint.isSelected()){
 						price += 650;
+						pcMpaint = "Metalic Paint:    $ 650";
+						
 					}
 					//fourth click
 					if(trackAdd == 4){
@@ -362,7 +363,7 @@ Customer cust1 = new Customer();
 					}
 					
 					if(rdbtnPayingInCash.isSelected()){
-						price = price - 650; 
+						price -=  750;
 						
 					}
 					if(rdbtnFinancing.isSelected()){
@@ -478,7 +479,7 @@ Customer cust1 = new Customer();
 				contentPane.add(lblAddress);
 				lblAddress.setText("Address: " + cust1.getAddress());
 				
-				lblNewLabel.setBounds(300, 66, 200, 16);
+				lblNewLabel.setBounds(255, 66, 200, 16);
 				contentPane.add(lblNewLabel);
 				lblNewLabel.setText("Phone#: " +cust1.getPhoneNumber());
 				
@@ -498,8 +499,9 @@ Customer cust1 = new Customer();
 				lblBase.setText("Base: $"+basePrice);
 				
 				
-				lblPackage.setBounds(255, 94, 78, 16);
+				lblPackage.setBounds(255, 94, 200, 16);
 				contentPane.add(lblPackage);
+				//add pcKage price
 				lblPackage.setText(pcKage);
 				
 				
@@ -507,15 +509,25 @@ Customer cust1 = new Customer();
 				contentPane.add(lblTot);
 				
 				
-				lblt.setBounds(183, 173, 92, 16);
+				//tag & title label
+				lblTT.setBounds(183, 173, 92, 16);
+				contentPane.add(lblTT);
+				//tag & title value  
+				lblNewLabel_1.setBounds(275, 173, 61, 16);
+				contentPane.add(lblNewLabel_1);
+				lblNewLabel_1.setText("325");
+				
+				// add metalic paint here
+				lblMp.setBounds(183, 134, 150, 16);
+				contentPane.add(lblMp);
+				lblMp.setText(pcMpaint);
+		
+				//tax label  
+				lblt.setBounds(183, 154, 92, 16);
 				contentPane.add(lblt);
 				
-			
-				lblTT.setBounds(183, 134, 92, 16);
-				contentPane.add(lblTT);
-				
-				
-				lblTax.setBounds(275, 173, 61, 16);
+				//tax value
+				lblTax.setBounds(275, 154, 61, 16);
 				contentPane.add(lblTax);
 				lblTax.setText("" + tax);
 				
@@ -525,9 +537,7 @@ Customer cust1 = new Customer();
 				lblTotalCost.setText(""+price);
 				
 				
-				lblNewLabel_1.setBounds(275, 134, 61, 16);
-				contentPane.add(lblNewLabel_1);
-				lblNewLabel_1.setText("325");
+
 			}
 			
 		});
